@@ -93,7 +93,7 @@ export default function Booking() {
                     </span>
                     vnđ
                 </p>
-                <button onClick={handleBookingTicket} className='btn btn-info'>Booking</button>
+                <button onClick={handleBookingTicket} className='btn btn-danger'>Booking</button>
             </div>
         </div>
     ) : (
