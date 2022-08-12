@@ -25,45 +25,45 @@ export default function Router() {
                     path: '/movie/:movieId',
                     element: <MovieDetails />
                 },
-                {
-                    path: '/',
-                    element: <AuthGuard />,
-                    children: [
-                        {
-                            path: '/booking/:maLichChieu',
-                            element: <Booking />
-                        }
-                    ]
-                },
-                {
-                    path: '/',
-                    element: <NoAuthGuard />,
-                    children: [
-                        {
-                            path: '/login',
-                            element: <Login />
-                        }
-                    ]
-                }
+                // {
+                //     path: '/',
+                //     element: <AuthGuard />,
+                //     children: [
+                //         {
+                //             path: '/booking/:maLichChieu',
+                //             element: <Booking />
+                //         }
+                //     ]
+                // },
+                // {
+                //     path: '/',
+                //     element: <NoAuthGuard />,
+                //     children: [
+                //         {
+                //             path: '/login',
+                //             element: <Login />
+                //         }
+                //     ]
+                // }
             ]
         },
 
-        {
-            path: '/admin',
-            element: <AdminLayout />,
-            children: [
-                {
-                    path: '/admin/',
-                    element: <AdminGuard />,
-                    children: [
-                        {
-                            path: '/admin/movie-management',
-                            element: <MovieManagement />
-                        }
-                    ]
-                }
-            ]
-        }
+        // {
+        //     path: '/admin',
+        //     element: <AdminLayout />,
+        //     children: [
+        //         {
+        //             path: '/admin/',
+        //             element: <AdminGuard />,
+        //             children: [
+        //                 {
+        //                     path: '/admin/movie-management',
+        //                     element: <MovieManagement />
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }
 
 
     ]);

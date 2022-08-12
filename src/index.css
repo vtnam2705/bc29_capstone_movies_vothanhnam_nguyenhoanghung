@@ -125,16 +125,19 @@ code {
 #footer {
   padding: 50px 0px;
 }
+
 #footer .footer_title {
   border-left: 5px solid;
   border-image-slice: 1;
   border-width: 5px;
   border-image-source: linear-gradient(to bottom, red, blue);
 }
+
 #footer .footer_title h4 {
   color: #858383;
   padding: 5px 10px;
 }
+
 #footer a {
   list-style: none;
   text-decoration: none;
@@ -142,29 +145,35 @@ code {
   font-size: 20px;
   transition: all 0.25s;
 }
+
 #footer a:hover {
   color: white;
 }
+
 #footer .footer_contact .cinema .cinema_content {
   display: grid;
   grid-template-columns: auto auto auto;
   text-align: center;
   padding: 5px;
 }
+
 #footer .footer_contact i {
   font-size: 25px;
 }
+
 #footer .app .app_content {
   display: grid;
   grid-template-columns: auto auto;
   text-align: center;
   padding: 5px;
 }
+
 #footer .footer_introduce a {
   padding: 10px 20px;
 }
 
-#footer .service_content, #footer .support_content {
+#footer .service_content,
+#footer .support_content {
   color: #858383;
   font-size: 20px;
 }

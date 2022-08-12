@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import MovieChair from '../../modules/Movie-seat/movie-chair';
 import { fetchRoomListApi, bookingTicketApi } from '../../services/booking'
-
+import './booking.scss'
 
 export default function Booking() {
     const [danhSachGhe, setDanhSachGhe] = useState([])
@@ -97,6 +97,12 @@ export default function Booking() {
             </div>
         </div>
     ) : (
-        <h3 className='text-center'>Loading...</h3>
+        // <h3 className='text-center'>Loading...</h3>
+        <div className="fancy-spinner">
+            <div className="ring" />
+            <div className="ring" />
+            <div className="dot" />
+        </div>
+
     )
 }
