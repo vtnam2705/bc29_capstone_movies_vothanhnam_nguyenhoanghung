@@ -1,0 +1,42 @@
+#movies_booking{
+   .border_chair{
+      .screen{
+         height: 100px;
+            h6{
+               padding: 0.5rem;
+               background-color: black;
+               color: white;
+               margin: 1rem 1.5rem;
+            }
+         }
+      .chair{
+         justify-content: center;
+         button{
+            padding: 0.5rem;
+            margin: 0.1rem;
+            width: 40px;
+            height: 40px;
+         }
+      }
+   }
+   .border_detail{
+      .detail_content{
+         h2{
+            text-transform: uppercase;
+            font-weight: 800;
+         }
+         p{
+            font-size: 20px;
+         }
+         button{
+            font-weight: 700;
+            font-size: 17px;
+            @include setButton($bg_color_1,$bg_color_2,$text_color_3,$direc_right);
+            &:hover{
+                  transition: all 1s;
+                  @include setButtonHover($bg_color_1,$bg_color_2,$text_color_1,$direc_left);
+               }
+         }
+      }
+   }
+}

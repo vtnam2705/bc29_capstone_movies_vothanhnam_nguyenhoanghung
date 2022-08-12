@@ -1,0 +1,63 @@
+#listMovies {
+   .title{
+      padding: 20px 0px;
+      .nav{
+         .nav-item{
+            .nav-link{
+               background-color: transparent;
+               color: whitesmoke;
+               font-size: 20px;
+            }
+            .nav-link::after{
+               content: "";
+               width: 0;
+               display: block;
+               height: 3.5px;
+               // background-color: red;
+               @include setGradien($bg_color_1,$bg_color_2,$direc_right);
+               transition: all 0.2s;
+            }
+            .nav-link.active{
+               transition: all 0.2s;
+               font-weight: 800;
+            }
+            .nav-link.active::after{
+               width: 100%;
+            }
+         }
+      }
+   }
+	.card {
+		border: 0px;
+		img {
+			height: 400px;
+		}
+		.card-header {
+			position: relative;
+         &:hover{
+            .card-hover{
+               opacity: 1;
+               button:hover{
+                  transition: all 1s;
+                  @include setButtonHover($bg_color_1,$bg_color_2,$text_color_1,$direc_left);
+               }
+            }
+         }
+		}
+		.card-hover {
+         background-color: rgba(0, 0, 0, 0.7);
+         position: absolute;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         opacity: 0;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         transition: all 1s;
+         button{
+            @include setButton($bg_color_1,$bg_color_2,$text_color_2,$direc_right);
+         }
+		}
+	}
+}

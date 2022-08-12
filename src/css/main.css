@@ -1,0 +1,264 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+#header button {
+  font-size: 25px;
+}
+#header .cart button {
+  border-radius: 10px;
+  position: relative;
+}
+#header .cart button i {
+  font-size: 40px;
+}
+#header .cart .quantity_cart span {
+  position: absolute;
+  font-weight: 400;
+}
+
+#listMovies .title {
+  padding: 20px 0px;
+}
+#listMovies .title .nav .nav-item .nav-link {
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 20px;
+}
+#listMovies .title .nav .nav-item .nav-link::after {
+  content: "";
+  width: 0;
+  display: block;
+  height: 3.5px;
+  background-image: linear-gradient(to right, red, blue);
+  transition: all 0.2s;
+}
+#listMovies .title .nav .nav-item .nav-link.active {
+  transition: all 0.2s;
+  font-weight: 800;
+}
+#listMovies .title .nav .nav-item .nav-link.active::after {
+  width: 100%;
+}
+#listMovies .card {
+  border: 0px;
+}
+#listMovies .card img {
+  height: 400px;
+}
+#listMovies .card .card-header {
+  position: relative;
+}
+#listMovies .card .card-header:hover .card-hover {
+  opacity: 1;
+}
+#listMovies .card .card-header:hover .card-hover button:hover {
+  transition: all 1s;
+  background: linear-gradient(to left, red, blue);
+  color: white;
+  color: white;
+  padding: 5px 40px;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to left, red, blue);
+}
+#listMovies .card .card-hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s;
+}
+#listMovies .card .card-hover button {
+  color: red;
+  padding: 5px 40px;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to right, red, blue);
+}
+
+#movies_detail .movies_layout .movies_content h1 {
+  color: red;
+}
+#movies_detail .movies_layout .movies_content button {
+  color: black;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 5px 40px;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to right, red, blue);
+}
+#movies_detail .movies_layout .movies_content button:hover {
+  transition: all 1s;
+  background: linear-gradient(to left, red, blue);
+  color: white;
+  color: white;
+  padding: 5px 40px;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to left, red, blue);
+}
+#movies_detail .movies_layout .movies_content .title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #a0a3a7;
+}
+#movies_detail .movies_layout .movies_content .content {
+  font-size: 18px;
+}
+#movies_detail .movies_layout .movies_content .content_title div {
+  padding: 0.5rem 0;
+}
+#movies_detail .movies_layout .details_content .content_header h2 {
+  padding: 5px 15px;
+  color: black;
+  border-bottom: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to right, red, blue);
+}
+#movies_detail .movies_layout .details_content .content_descript p {
+  font-size: 20px;
+}
+#movies_detail .movie_showtimes .showtime_header a {
+  text-transform: uppercase !important;
+  font-size: 20px;
+  padding: 5px 15px;
+  color: black;
+}
+#movies_detail .movie_showtimes .showtime_header a.active {
+  background-color: transparent;
+  font-weight: 700;
+  border-bottom: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to right, red, blue);
+}
+#movies_detail .showtime_content {
+  justify-content: center;
+  margin-top: 10px;
+}
+#movies_detail .showtime_content a {
+  margin-top: 0.5rem;
+  border: 2px solid;
+  display: block;
+  font-size: 15px;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.5s;
+  padding: 3px 1px;
+  text-align: center;
+}
+#movies_detail .showtime_content a:hover {
+  color: white;
+  background-image: linear-gradient(to left, red, blue);
+}
+
+#movies_booking .border_chair .screen {
+  height: 100px;
+}
+#movies_booking .border_chair .screen h6 {
+  padding: 0.5rem;
+  background-color: black;
+  color: white;
+  margin: 1rem 1.5rem;
+}
+#movies_booking .border_chair .chair {
+  justify-content: center;
+}
+#movies_booking .border_chair .chair button {
+  padding: 0.5rem;
+  margin: 0.1rem;
+  width: 40px;
+  height: 40px;
+}
+#movies_booking .border_detail .detail_content h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+#movies_booking .border_detail .detail_content p {
+  font-size: 20px;
+}
+#movies_booking .border_detail .detail_content button {
+  font-weight: 700;
+  font-size: 17px;
+  color: black;
+  padding: 5px 40px;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to right, red, blue);
+}
+#movies_booking .border_detail .detail_content button:hover {
+  transition: all 1s;
+  background: linear-gradient(to left, red, blue);
+  color: white;
+  color: white;
+  padding: 5px 40px;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to left, red, blue);
+}
+
+#footer {
+  padding: 50px 0px;
+}
+#footer .footer_title {
+  border-left: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to bottom, red, blue);
+}
+#footer .footer_title h4 {
+  color: #858383;
+  padding: 5px 10px;
+}
+#footer a {
+  list-style: none;
+  text-decoration: none;
+  color: #858383;
+  font-size: 20px;
+  transition: all 0.25s;
+}
+#footer a:hover {
+  color: white;
+}
+#footer .footer_contact .cinema .cinema_content {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+  padding: 5px;
+}
+#footer .footer_contact i {
+  font-size: 25px;
+}
+#footer .app .app_content {
+  display: grid;
+  grid-template-columns: auto auto;
+  text-align: center;
+  padding: 5px;
+}
+#footer .footer_introduce a {
+  padding: 10px 20px;
+}
+#footer .service_content, #footer .support_content {
+  color: #858383;
+  font-size: 20px;
+}/*# sourceMappingURL=main.css.map */

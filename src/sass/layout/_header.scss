@@ -1,0 +1,20 @@
+#header{
+   button{
+      font-size: 25px;
+   }
+   .cart{
+      button{
+         border-radius: 10px;
+         position: relative;
+         i{
+            font-size: 40px;
+         }
+      }
+      .quantity_cart{
+         span{
+            position: absolute;
+            font-weight: 400;
+         }
+      }
+   }
+}

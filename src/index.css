@@ -1,0 +1,170 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* Header */
+#header button {
+  font-size: 30px;
+}
+
+#header .cart button {
+  border-radius: 10px;
+}
+
+#header .cart button i {
+  position: relative;
+}
+
+#header .cart .quantity_cart {
+  position: absolute;
+}
+
+#header .cart .quantity_cart span {
+  font-weight: 400;
+}
+
+/* Movie Lisr */
+#listMovies .title .nav .nav-item .nav-link {
+  background-color: transparent;
+  color: black;
+  font-size: 20px;
+}
+
+#listMovies .title .nav .nav-item .nav-link::after {
+  content: "";
+  width: 0;
+  display: block;
+  height: 3.5px;
+  background-image: linear-gradient(to right, red, blue);
+  transition: all 0.2s;
+}
+
+#listMovies .title .nav .nav-item .nav-link.active {
+  transition: all 0.2s;
+  font-weight: 800;
+}
+
+#listMovies .title .nav .nav-item .nav-link.active::after {
+  width: 100%;
+}
+
+#listMovies .title .cart i {
+  font-size: 40px;
+}
+
+#listMovies .card {
+  border: 0px;
+}
+
+#listMovies .card img {
+  height: 400px;
+}
+
+#listMovies .card .card-header {
+  position: relative;
+}
+
+#listMovies .card .card-header:hover .card-hover {
+  opacity: 1;
+}
+
+#listMovies .card .card-header:hover .card-hover button:hover {
+  transition: all 1s;
+  background: linear-gradient(to left, red, blue);
+  color: white;
+  color: white;
+  padding: 10px 40px;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to left, red, blue);
+}
+
+#listMovies .card .card-hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s;
+}
+
+#listMovies .card .card-hover button {
+  color: red;
+  padding: 10px 40px;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to right, red, blue);
+}
+
+/* Footer */
+#footer {
+  padding: 50px 0px;
+}
+#footer .footer_title {
+  border-left: 5px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(to bottom, red, blue);
+}
+#footer .footer_title h4 {
+  color: #858383;
+  padding: 5px 10px;
+}
+#footer a {
+  list-style: none;
+  text-decoration: none;
+  color: #858383;
+  font-size: 20px;
+  transition: all 0.25s;
+}
+#footer a:hover {
+  color: white;
+}
+#footer .footer_contact .cinema .cinema_content {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+  padding: 5px;
+}
+#footer .footer_contact i {
+  font-size: 25px;
+}
+#footer .app .app_content {
+  display: grid;
+  grid-template-columns: auto auto;
+  text-align: center;
+  padding: 5px;
+}
+#footer .footer_introduce a {
+  padding: 10px 20px;
+}
+
+#footer .service_content, #footer .support_content {
+  color: #858383;
+  font-size: 20px;
+}

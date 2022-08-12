@@ -1,0 +1,53 @@
+#footer{
+   padding: 50px 0px;
+   .footer_title{
+      h4{
+         color: $text_color_4;
+         padding: 5px 10px;
+      }
+      border-left: 5px solid;
+      border-image-slice: 1;
+      border-width: 5px;
+      border-image-source: linear-gradient(to bottom,$bg_color_1,$bg_color_2);
+   }
+   a{
+      list-style: none;
+      text-decoration: none;
+      color: $text_color_4;
+      font-size: 20px;
+      transition: all 0.25s;
+      &:hover{
+         color: $text_color_1;
+      }
+   }
+   .footer_contact{
+      .cinema{
+         .cinema_content{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            text-align: center;
+            padding: 5px;
+         }
+      }
+      i{
+            font-size: 25px;
+      }
+   }
+   .app{
+      .app_content{
+         display: grid;
+         grid-template-columns: auto auto;
+         text-align: center;
+         padding: 5px;  
+      }
+   }
+   .footer_introduce{
+      a{
+         padding: 10px 20px;
+      }
+   }
+   .service_content , .support_content{
+      color: $text_color_4;
+      font-size: 20px;
+   }
+}

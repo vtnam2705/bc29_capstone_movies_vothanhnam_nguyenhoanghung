@@ -1,0 +1,24 @@
+#listMovies .card {
+  border: 0px;
+}
+#listMovies .card img {
+  height: 400px;
+}
+#listMovies .card .card-header {
+  position: relative;
+}
+#listMovies .card .card-header:hover .card-hover {
+  opacity: 1;
+}
+#listMovies .card .card-hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}/*# sourceMappingURL=list-movie.css.map */

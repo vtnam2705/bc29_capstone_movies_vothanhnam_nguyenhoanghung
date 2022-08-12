@@ -1,0 +1,16 @@
+@mixin setButtonHover($bg_1,$bg_2,$text_color,$direc) {
+   background:linear-gradient(to left,$bg_1,$bg_2);
+   color: $text_color;
+   @include setButton($bg_1,$bg_2 ,$text_color,$direc);
+}
+@mixin setButton($bg_1,$bg_2,$text_color,$direc) {
+   color: $text_color;
+   padding: 5px 40px;
+   border: 5px solid;
+   border-image-slice: 1;
+   border-width: 5px;
+   border-image-source: linear-gradient(to $direc,$bg_1,$bg_2);
+}
+@mixin setGradien($bg_1,$bg_2,$direc) {
+   background-image: linear-gradient(to $direc,$bg_1,$bg_2);
+}
