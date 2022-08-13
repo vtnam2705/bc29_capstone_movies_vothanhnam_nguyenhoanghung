@@ -1,5 +1,6 @@
 #movies_booking{
    .border_chair{
+      border: 1px solid silver;
       .screen{
          height: 100px;
             h6{
@@ -10,21 +11,15 @@
             }
          }
       .chair{
+         display: flex;
          justify-content: center;
          button{
-            padding: 0.5rem;
-            margin: 0.1rem;
-            width: 40px;
-            height: 40px;
+            margin: 0.5rem;
          }
       }
    }
    .border_detail{
       .detail_content{
-         h2{
-            text-transform: uppercase;
-            font-weight: 800;
-         }
          p{
             font-size: 20px;
          }

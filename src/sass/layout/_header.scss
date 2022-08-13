@@ -1,20 +1,44 @@
 #header{
-   button{
-      font-size: 25px;
+      .header_logo{
+      display: flex;
+      justify-content: center;
+      height: 50px;
    }
-   .cart{
-      button{
-         border-radius: 10px;
-         position: relative;
-         i{
-            font-size: 40px;
-         }
+   .header_nav{
+      a{
+         text-transform: uppercase;
+         font-weight: 600;
+         color: black;
       }
-      .quantity_cart{
-         span{
-            position: absolute;
-            font-weight: 400;
-         }
-      }
+      .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: $text_color_4;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+   color: whitesmoke;
+   transition: all 0.5s;
+}
+
+.dropdown:hover .dropdown-content {
+   display: block;
+}
    }
 }

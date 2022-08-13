@@ -1,8 +1,11 @@
 #movies_detail{
-   .movies_layout{
+   .row{
+      margin: auto 0;
+   }
+   .movies_detail{
       .movies_content{
          h1{
-            color: red;
+            font-weight: 700;
          }
          button{
             color: $text_color_3;
@@ -24,7 +27,8 @@
             color: #a0a3a7;
          }
          .content{
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 600;
          }
          .content_title{
             div{
@@ -51,41 +55,67 @@
       }
    }
    .movie_showtimes{
-      .showtime_header{
-            a{
-               text-transform: uppercase !important;
-               font-size: 20px;
-               padding: 5px 15px;
-               color: black;
-               &.active{
-                  background-color: transparent;
-                  font-weight: 700;
+      padding: 3rem 0;
+      .showtime_layout{
+         h3{
+               display: flex;
+               align-items: center;
+         } 
+         .showtime_tilte{
+            .title_content{
+                  text-transform: uppercase;
+                  padding: 15px;
+                  color: black;
                   border-bottom: 5px solid;
                   border-image-slice: 1;
                   border-width: 5px;
                   border-image-source: linear-gradient(to right, red, blue);
+                  img{
+                     width: 70px;
+                     height: 70px;
+                  }
+            }             
+         }
+         .showtime_content{
+            .content{
+               border: 2px solid;
+               border-width: 100%;
+               .RapPhim{
+                  .RapPhim_title{
+                     img{
+                        width: 50px;
+                        height: 50px;
+                     }
+                  }
+               }
+               .GioChieu{
+                  justify-content: space-around;
+                  a{
+                     height: 80px;
+                     width: 270px;
+                     border: 2px solid;
+                     display: block;
+                     font-size: 20px;
+                     color:black;
+                     text-decoration: none;
+                     font-weight: 600;
+                     transition: all 0.5s;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     &:hover{
+                        color: white;
+                        @include setGradien($bg_color_1,$bg_color_2,$direc_left);
+                     }
+                     .time,.rap{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                     }
+                  }
                }
             }
          }
       }
-      .showtime_content{
-         justify-content: center;
-         margin-top: 10px;
-         a{
-            margin-top: 0.5rem;
-            border: 2px solid;
-            display: block;
-            font-size: 15px;
-            color:black;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.5s;
-            padding: 3px 1px;
-            text-align: center;
-            &:hover{
-               color: white;
-               @include setGradien($bg_color_1,$bg_color_2,$direc_left);
-            }
-         }
-      }
    }
+}

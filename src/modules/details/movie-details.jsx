@@ -19,7 +19,7 @@ export default function Details() {
   };
 
   return (
-    <div className="movies_layout row">
+    <div className="movies_detail row">
       <div className="movies_images col-lg-4 col-6 col-sm-12">
         <img className="w-100 h-100" src={movieDetail.hinhAnh} />
       </div>
@@ -28,21 +28,19 @@ export default function Details() {
           <h1>{movieDetail.tenPhim}</h1>
           <div className="movie_point">
             <span className="title">Đánh giá : </span>
-            <span className="content">{movieDetail.danhGia}</span>
+            <span className="content">{movieDetail.danhGia}/10</span>
           </div>
           <div className="ngayChieu">
             <span className="title">Ngày chiếu : </span>
-            <span className="content">
-              {formatDate(movieDetail.ngayKhoiChieu)}
-            </span>
+            <span className="content">{formatDate(movieDetail.ngayChieu)}</span>
           </div>
           <div className="btnTrailer">
             <button>Trailer</button>
           </div>
         </div>
       </div>
-      <div className="details_content pt-5 col-12">
-        <div className="content_header row">
+      <div className="details_content p-0 col-12">
+        <div className="content_header pt-5 row">
           <h2 className="col-5">Nội dung phim</h2>
         </div>
         <div className="content_descript">
