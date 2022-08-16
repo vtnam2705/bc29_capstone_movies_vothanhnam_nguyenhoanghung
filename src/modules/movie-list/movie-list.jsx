@@ -1,21 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoadingContext } from "../../contexts/loading.context";
+import { useAsync } from "../../hooks/useAsync";
 import { fetchMovieListApi } from "../../services/movie";
 
 export default function MovieList() {
   const navigate = useNavigate();
 
-  const [movieList, setMovieList] = useState([]);
+  // const [movieList, setMovieList] = useState([]);
 
-  useEffect(() => {
-    fetchMovieList();
-  }, []);
+  // const [_, setLoadingState] = useContext(LoadingContext);
 
-  const fetchMovieList = async () => {
-    const result = await fetchMovieListApi();
+  const { state:movieList= [] } = useAsync({
+    dependencies: [],
+    service: () => fetchMovieListApi()
+  })
 
-    setMovieList(result.data.content);
-  };
+  // useEffect(() => {
+  //   fetchMovieList();
+  // }, []);
+
+  // const fetchMovieList = async () => {
+  //   // Set loading before call Api: true
+  //   setLoadingState({ isLoading: true });
+
+  //   const result = await fetchMovieListApi();
+
+  //   // Set loading after Api called: false
+  //   setLoadingState({ isLoading: false });
+
+  //   setMovieList(result.data.content);
+  // };
 
   const renderHotMovies = () => {
     return movieList?.map((ele) => {

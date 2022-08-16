@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchMovieShowTimeApi } from "../../services/theater";
 
-import moment from "moment";
+// import moment from "moment";
 import { formatDate } from "../../utils/common";
 
 export default function ShowTime() {

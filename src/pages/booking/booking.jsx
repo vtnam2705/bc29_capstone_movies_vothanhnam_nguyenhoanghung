@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import MovieChair from '../../modules/Movie-seat/movie-chair';
 import { fetchRoomListApi, bookingTicketApi } from '../../services/booking'
+import { formatDate } from '../../utils/common';
 import './booking.scss'
 
 export default function Booking() {
@@ -65,37 +66,82 @@ export default function Booking() {
 
   return roomList ? (
     <div id="movies_booking">
-      <div className="container">
+      <div className="w-75 mx-auto py-5">
         <div className="booking_content row">
-          <div className="border_chair col-sm-12 col-md-12 col-lg-7 col-xl-7">
+          <div className="border_chair col-sm-12 col-md-12 col-lg-8 col-xl-8">
             <div className="screen">
               <div className="screen_content py-3">
                 <h6 className="text-center">Màn hình</h6>
               </div>
             </div>
-            <div className="chair row ml-0 py-3">
-              <div className='col-7'>
+            <div className="chair ml-0 py-3">
+              <div className="chair_layout">
                 {roomList.danhSachGhe.map((ele, idx) => {
                   return (
                     <React.Fragment key={ele.tenGhe}>
                       <MovieChair handleSelect={handleSelect} item={ele} />
                       {(idx + 1) % 16 === 0 && <br />}
                     </React.Fragment>
-                  )
+                  );
                 })}
               </div>
-              
-              <div className='col-5'>
-                <img className='img-fluid' src={roomList.thongTinPhim.hinhAnh} alt='Movie' />
-                <h4 className='mt-3'>Tên phim: {roomList.thongTinPhim.tenPhim}</h4>
-                <h5>Rạp chiếu: {roomList.thongTinPhim.tenRap}</h5>
+            </div>
+            <div className="chair_decript row container">
+              <div className="row">
+                <button className="ghe gheVip"></button>
+                <h5>Ghế Vip</h5>
+              </div>
+              <div className="row">
+                <button className="ghe dangDat"></button>
+                <h5>Ghế Đang Chọn</h5>
+              </div>
+              <div className="row">
+                <button className="ghe daDat"></button>
+                <h5>Ghế Đã chọn</h5>
+              </div>
+              <div className="row">
+                <button className="ghe"></button>
+                <h5>Ghế Còn Trống</h5>
+              </div>
+            </div>
+          </div>
+          <div className="border_detail col-sm-12 col-md-12 col-lg-4 col-xl-4">
+            <div className="detail_img">
+              <img className="img-fluid" src={roomList.thongTinPhim.hinhAnh} />
+            </div>
+            <div className="detail_content py-2">
+              <div className="content_title">
+                <h1>{roomList.thongTinPhim.tenPhim}</h1>
+                <div className="gioChieu">
+                  <span className="title">Giờ chiếu : </span>
+                  <span className="content">
+                    {roomList.thongTinPhim.gioChieu}
+                  </span>
+                </div>
+                <div className="ngayChieu">
+                  <span className="title">Ngày chiếu : </span>
+                  <span className="content">
+                    {/* {formatDate(roomList.thongTinPhim.ngayChieu)} */}
+                    {roomList.thongTinPhim.ngayChieu}
+                  </span>
+                </div>
+                <div className="diaChi">
+                  <span className="title">Địa Chỉ : </span>
+                  <span className="content">
+                    {roomList.thongTinPhim.diaChi}
+                  </span>
+                </div>
+                <div className="rap">
+                  <span className="content">
+                    {roomList.thongTinPhim.tenRap}
+                  </span>
+                </div>
                 <p>
                   Ghế: {danhSachGhe.map(
                     ele => (
                       ele.loaiGhe === 'Thuong' ?
                         <span className='mr-2 badge badge-success'>{ele.tenGhe}</span>
                         : <span className='mr-2 badge badge-danger'>{ele.tenGhe}</span>
-
                     )
                   )}
                 </p>
@@ -109,20 +155,6 @@ export default function Booking() {
                   </span>
                   vnđ
                 </p>
-                <button onClick={handleBookingTicket} className='btn btn-danger'>Booking</button>
-              </div>
-            </div>
-            <div className="border_detail col-sm-12 col-md-12 col-lg-5 col-xl-5">
-              <div className="detail_img">
-                <img
-                  className="img-fluid"
-                  src="./thor-tinh-yeu-va-sam-set_gp01.jpg"
-                  alt="Movie"
-                />
-              </div>
-              <div className="detail_content py-2">
-                <h2>Tên phim</h2>
-                <p>Ngày chiếu</p>
                 <button>Thêm vào giỏ hàng</button>
               </div>
             </div>
@@ -131,11 +163,12 @@ export default function Booking() {
       </div>
     </div>
   ) : (
-    <div className="fancy-spinner">
-      <div className="ring" />
-      <div className="ring" />
-      <div className="dot" />
+    <div className='loading vh-100'>
+      <div className="fancy-spinner">
+        <div className="ring" />
+        <div className="ring" />
+        <div className="dot" />
+      </div>
     </div>
-
   )
 }
