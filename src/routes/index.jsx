@@ -1,5 +1,6 @@
 import React, { lazy } from 'react'
 import { useRoutes } from 'react-router-dom'
+import UpdateMovie from '../pages/update-movie/update-movie';
 const NoAuthGuard = lazy(() => import('../guards/no-auth-guard'));
 const AuthGuard = lazy(() => import('../guards/auth-guard'));
 const HomeLayouts = lazy(() => import('../layouts/home'));
@@ -10,7 +11,7 @@ const MovieDetails = lazy(() => import('../pages/movie-details/movie-details'));
 const AdminLayout = lazy(() => import('../layouts/admin'));
 const MovieManagement = lazy(() => import('../pages/movie-management/movie-management'));
 const AdminGuard = lazy(() => import('../guards/adminGuard'));
-
+const CreateMovie = lazy(() => import('../pages/create-movie/create-movie'))
 
 export default function Router() {
     const routing = useRoutes([
@@ -59,7 +60,15 @@ export default function Router() {
                     children: [
                         {
                             path: '/admin/movie-management',
-                            element: <MovieManagement />
+                            element: <MovieManagement />,
+                        },
+                        {
+                            path: '/admin/movie-management/create',
+                            element: <CreateMovie/>
+                        },
+                        {
+                            path: '/admin/movie-management/:movieId/update',
+                            element: <UpdateMovie/>
                         }
                     ]
                 }
