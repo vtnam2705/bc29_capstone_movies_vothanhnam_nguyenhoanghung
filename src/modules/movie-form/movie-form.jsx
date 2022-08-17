@@ -26,11 +26,13 @@ export default function MovieForm() {
     const [file, setFile] = useState()
     const params = useParams()
     const navigate = useNavigate();
-    const {} = useAsync({
+    const { state: MovieDetails } = useAsync({
         service: () => fetchMovieDetailApi(params.movieId),
         dependencies: [params.movieId],
-        condition: params.movieId,
+        condition: !!params.movieId,
     });
+    console.log(MovieDetails)
+
     const onFormLayoutChange = (event) => {
         setComponentSize(event.target.value);
     };
