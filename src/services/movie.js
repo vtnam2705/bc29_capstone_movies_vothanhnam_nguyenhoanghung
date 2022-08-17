@@ -24,4 +24,17 @@ const addMovieuploadImage = (data) => {
   })
 };
 
-export { fetchMovieListApi, fetchMovieDetailApi, addMovieuploadImage };
+
+const updateMovieUploadImage = (data) => {
+  return request({
+    url: '/QuanLyPhim/CapNhatPhimUpload',
+    method: "POST",
+    data,
+  })
+}
+export { 
+  fetchMovieListApi, 
+  fetchMovieDetailApi, 
+  addMovieuploadImage,
+  updateMovieUploadImage
+};

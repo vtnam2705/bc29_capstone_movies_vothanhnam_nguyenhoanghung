@@ -13,10 +13,12 @@ import {
     TreeSelect,
 } from 'antd';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GROUP_ID } from '../../constants/common';
 import { useAsync } from '../../hooks/useAsync';
-import { addMovieuploadImage, fetchMovieDetailApi } from '../../services/movie';
+import { addMovieuploadImage, fetchMovieDetailApi, updateMovieUploadImage } from '../../services/movie';
+import moment from 'moment';
 
 export default function MovieForm() {
     const [componentSize, setComponentSize] = useState('default');
@@ -26,12 +28,25 @@ export default function MovieForm() {
     const [file, setFile] = useState()
     const params = useParams()
     const navigate = useNavigate();
-    const { state: MovieDetails } = useAsync({
+
+    const [form] = Form.useForm()
+
+    const { state: movieDetails } = useAsync({
         service: () => fetchMovieDetailApi(params.movieId),
         dependencies: [params.movieId],
         condition: !!params.movieId,
     });
-    console.log(MovieDetails)
+
+    useEffect(() => {
+        if(movieDetails) {
+            form.setFieldsValue({
+                ...movieDetails,
+                ngayKhoiChieu: moment(movieDetails.ngayKhoiChieu),
+            });
+
+            setImage(movieDetails.hinhAnh)
+        }
+    }, [movieDetails])
 
     const onFormLayoutChange = (event) => {
         setComponentSize(event.target.value);
@@ -51,7 +66,13 @@ export default function MovieForm() {
         // set condition file
         file && formData.append('File', file, file.name);
 
-        await addMovieuploadImage(formData);
+        params.movieId && formData.append("maPhim", params.movieId)
+
+        if(params.movieId) {
+            await updateMovieUploadImage(formData)
+        } else{
+            await addMovieuploadImage(formData);
+        }
 
         // notification add moivie success
         notification.success({
@@ -75,6 +96,7 @@ export default function MovieForm() {
 
     return (
         <Form
+            form={form}
             labelCol={{
                 span: 4,
             }}
