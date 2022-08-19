@@ -32,6 +32,13 @@ const updateMovieUploadImage = (data) => {
     data,
   })
 }
+
+const deleteMovie = (data) => {
+  return request({
+    url: '/QuanLyPhim/XoaPhim',
+    method: 'DELETE'
+  })
+}
 export { 
   fetchMovieListApi, 
   fetchMovieDetailApi, 

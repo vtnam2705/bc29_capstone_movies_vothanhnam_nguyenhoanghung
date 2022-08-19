@@ -5,7 +5,7 @@ export default function Footer() {
     return (
         // <div className='footer bg-light py-3 text-center'>Made by myself</div>
         <div id="footer" className="bg-dark">
-            <div className="container">
+            <div className="w-75 mx-auto">
                 <div className="footer_content row">
                     <div className="footer_introduce content col-sm-6 col-md-6 col-lg-3 col-xl-3">
                         <div className="footer_title">

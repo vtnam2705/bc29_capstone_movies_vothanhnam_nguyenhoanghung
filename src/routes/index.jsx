@@ -1,5 +1,6 @@
 import React, { lazy } from 'react'
 import { useRoutes } from 'react-router-dom'
+import Register from '../modules/register/register';
 import UpdateMovie from '../pages/update-movie/update-movie';
 const NoAuthGuard = lazy(() => import('../guards/no-auth-guard'));
 const AuthGuard = lazy(() => import('../guards/auth-guard'));
@@ -46,6 +47,10 @@ export default function Router() {
                             element: <Login />
                         }
                     ]
+                },
+                {
+                    path: '/register',
+                    element: <Register/>
                 }
             ]
         },
