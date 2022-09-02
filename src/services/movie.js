@@ -1,13 +1,23 @@
 import { request } from "../configs/axios";
 import { GROUP_ID } from "../constants/common";
 
-const fetchMovieListApi = () => {
+// Lấy danh sách phim
+const fetchMovieListApi = (tenPhim = '') => {
+  if (tenPhim.trim() !== '') {
+    return request(
+      {
+        url: `/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUP_ID}&tenPhim=${tenPhim}`,
+        method: "GET",
+      }
+    );
+  }
   return request({
     url: `/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUP_ID}`,
     method: "GET",
   });
 };
 
+// Lấy thông tin phim
 const fetchMovieDetailApi = (movieId) => {
   return request({
     url: `/QuanLyPhim/LayThongTinPhim?MaPhim=${movieId}`,
@@ -15,7 +25,7 @@ const fetchMovieDetailApi = (movieId) => {
   });
 };
 
-
+// Thêm phim và upload hình ảnh
 const addMovieuploadImage = (data) => {
   return request({
     url: '/QuanLyPhim/ThemPhimUploadHinh',
@@ -24,7 +34,7 @@ const addMovieuploadImage = (data) => {
   })
 };
 
-
+// Cập nhật phim và upload hình ảnh
 const updateMovieUploadImage = (data) => {
   return request({
     url: '/QuanLyPhim/CapNhatPhimUpload',
@@ -33,15 +43,17 @@ const updateMovieUploadImage = (data) => {
   })
 }
 
-const deleteMovie = (data) => {
+const deleteMovie = (movieId) => {
   return request({
-    url: '/QuanLyPhim/XoaPhim',
+    url: `/QuanLyPhim/XoaPhim?MaPhim=${movieId}`,
     method: 'DELETE'
   })
 }
-export { 
-  fetchMovieListApi, 
-  fetchMovieDetailApi, 
+
+export {
+  fetchMovieListApi,
+  fetchMovieDetailApi,
   addMovieuploadImage,
-  updateMovieUploadImage
+  updateMovieUploadImage,
+  deleteMovie
 };

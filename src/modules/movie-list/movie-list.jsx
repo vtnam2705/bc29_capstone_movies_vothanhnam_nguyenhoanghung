@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../../contexts/loading.context";
 import { useAsync } from "../../hooks/useAsync";
@@ -7,33 +7,41 @@ import { fetchMovieListApi } from "../../services/movie";
 export default function MovieList() {
   const navigate = useNavigate();
 
-  // const [movieList, setMovieList] = useState([]);
-
-  // const [_, setLoadingState] = useContext(LoadingContext);
-
-  const { state:movieList= [] } = useAsync({
+  const { state: movieList = [] } = useAsync({
     dependencies: [],
     service: () => fetchMovieListApi()
   })
 
-  // useEffect(() => {
-  //   fetchMovieList();
-  // }, []);
+  // **** Search function - start ****
+  const [searchInput, setSearchInput] = useState('');
 
-  // const fetchMovieList = async () => {
-  //   // Set loading before call Api: true
-  //   setLoadingState({ isLoading: true });
+  // Technique debounce    
+  const typingTimeoutRef = useRef(null)
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setSearchInput(value);
 
-  //   const result = await fetchMovieListApi();
+    // if(!handleSubmit) return;
 
-  //   // Set loading after Api called: false
-  //   setLoadingState({ isLoading: false });
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current)
+    };
 
-  //   setMovieList(result.data.content);
-  // };
+    typingTimeoutRef.current = setTimeout(() => {
+      const filtered = handleFilterChange;
+    }, 300)
+  }
+
+  const handleFilterChange = !searchInput
+    ? movieList
+    : movieList.filter((ele) =>
+      ele.tenPhim.toLowerCase().includes(searchInput.toLowerCase())
+    )
+
+  // **** Search function - end ****
 
   const renderHotMovies = () => {
-    return movieList?.map((ele) => {
+    return handleFilterChange.map((ele) => {
       if (ele.hot) {
         return (
           <div
@@ -69,7 +77,7 @@ export default function MovieList() {
   };
 
   const renderPhimDangChieu = () => {
-    return movieList?.map((ele) => {
+    return handleFilterChange.map((ele) => {
       if (ele.dangChieu) {
         return (
           <div
@@ -105,7 +113,7 @@ export default function MovieList() {
   };
 
   const renderAllMovies = () => {
-    return movieList?.map((ele) => {
+    return handleFilterChange.map((ele) => {
       if (ele.sapChieu) {
         return (
           <div
@@ -171,11 +179,16 @@ export default function MovieList() {
                   <input
                     className="form-control mr-2 col-7"
                     type="text"
-                    placeholder="Search"
+                    placeholder="Which movie do you like to watch?...."
+                    onChange={handleChange}
                   />
-                  <button className="btn btn-success col-3" type="submit">
+                  {/* <button
+                    className="btn btn-success col-3"
+                    type="button"
+                  // onClick={handleSubmit}
+                  >
                     Search
-                  </button>
+                  </button> */}
                 </form>
               </a>
             </div>
@@ -184,6 +197,11 @@ export default function MovieList() {
       </div>
       <div className="movies tab-content pt-4">
         <div id="phimHot" className="container tab-pane active">
+          {/* {handleFilterChange.map((ele) => {
+            return (
+              <div key={ele.maPhim} className="row">{renderHotMovies()}</div>
+            )
+          })} */}
           <div className="row">{renderHotMovies()}</div>
         </div>
         <div id="phimDangChieu" className="container tab-pane fade">

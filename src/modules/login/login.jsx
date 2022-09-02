@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { loginApi } from '../../services/user';
 import { setUserInfoAction } from '../../store/actions/userAction';
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { USER_INFO_KEY } from '../../constants/common';
+import { notification } from 'antd';
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -25,13 +26,14 @@ export default function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const result = await loginApi(login)
-
+        const result = await loginApi(login);
+        console.log(result)
         // Save user, password to local storage in order to web will be auto-login when accessing
         localStorage.setItem(USER_INFO_KEY, JSON.stringify(result.data.content))
-
         // dispatch data to store
         dispatch(setUserInfoAction(result.data.content))
+        // Alert login successful
+        notification.success('Login Successful!!!')
         // After login, return home page
         navigate('/')
     }
@@ -93,6 +95,9 @@ export default function Login() {
                                             <div className="form-check d-flex justify-content-start mb-4">
                                                 <input className="form-check-input" type="checkbox" defaultValue id="form1Example3" />
                                                 <label className="form-check-label" htmlFor="form1Example3"> Remember password </label>
+                                            </div>
+                                            <div className='mb-2'>
+                                                <NavLink to={'/register'} className='text-decoration-none text-primary'>Haven't account?</NavLink>
                                             </div>
                                             <button className="btn btn-primary btn-lg btn-block" type="submit">Login</button>
                                         </form>

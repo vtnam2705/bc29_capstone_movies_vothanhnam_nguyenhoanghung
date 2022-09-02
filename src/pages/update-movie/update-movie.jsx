@@ -1,8 +1,8 @@
 import React from 'react'
-import MovieForm from '../../modules/movie-form/movie-form'
+import EditMovie from '../../modules/edit-movie/edit-movie'
 
 export default function UpdateMovie() {
     return (
-        <MovieForm/>
+        <EditMovie/>
     )
 }

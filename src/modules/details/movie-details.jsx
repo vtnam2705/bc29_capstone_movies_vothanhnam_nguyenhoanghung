@@ -35,7 +35,18 @@ export default function Details() {
             <span className="content">{formatDate(movieDetail.ngayChieu)}</span>
           </div>
           <div className="btnTrailer">
-            <button>Trailer</button>
+            <button data-toggle="modal" data-target="#exampleModalCenter">Trailer</button>
+            <div className="modal fade" id="exampleModalCenter">
+              <div className="modal-dialog modal-dialog-centered" role='document'>
+                <div className="modal-content">
+                  <div className="modal-body">
+                    <div className="embed-responsive embed-responsive-16by9 p-3">
+                      <iframe className="embed-responsive-item" src={movieDetail.trailer}></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -50,3 +61,4 @@ export default function Details() {
     </div>
   );
 }
+

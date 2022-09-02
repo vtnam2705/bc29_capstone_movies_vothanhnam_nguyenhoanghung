@@ -1,6 +1,10 @@
 import React, { lazy } from 'react'
 import { useRoutes } from 'react-router-dom'
+import CartDetail from '../modules/cart/cart';
 import Register from '../modules/register/register';
+import Schedule from '../modules/Schedule/schedule';
+import PageNotFound from '../pages/PageNotFound/PageNotFound';
+import UpdateInfoUserPage from '../pages/update-info-user/update-info-user-page';
 import UpdateMovie from '../pages/update-movie/update-movie';
 const NoAuthGuard = lazy(() => import('../guards/no-auth-guard'));
 const AuthGuard = lazy(() => import('../guards/auth-guard'));
@@ -51,6 +55,10 @@ export default function Router() {
                 {
                     path: '/register',
                     element: <Register/>
+                },
+                {
+                    path: '/UpdateInfo',
+                    element: <UpdateInfoUserPage/>
                 }
             ]
         },
@@ -72,15 +80,22 @@ export default function Router() {
                             element: <CreateMovie/>
                         },
                         {
-                            path: '/admin/movie-management/:movieId/update',
+                            path: '/admin/movie-management/update/:movieId',
                             element: <UpdateMovie/>
+                        },
+                        {
+                            path: '/admin/movie-management/showtime/:movieId',
+                            element: <Schedule/>
                         }
                     ]
                 }
             ]
+        },
+
+        {
+            path: '*',
+            element: <PageNotFound/>
         }
-
-
     ]);
 
 

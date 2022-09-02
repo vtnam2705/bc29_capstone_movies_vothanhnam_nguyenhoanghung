@@ -13,11 +13,9 @@ export const request = axios.create({
 
 request.interceptors.request.use((config) => {
     let userInfo = localStorage.getItem(USER_INFO_KEY);
-    
+
     if (userInfo) {
         userInfo = JSON.parse(userInfo);
-
-        // 
         config.headers.Authorization = `Bearer ${userInfo.accessToken}`;
     }
 
@@ -26,6 +24,5 @@ request.interceptors.request.use((config) => {
 
 
 request.interceptors.response.use((response) => {
-
     return response;
 })

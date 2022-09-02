@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import MovieChair from '../../modules/Movie-seat/movie-chair';
 import { fetchRoomListApi, bookingTicketApi } from '../../services/booking'
@@ -12,7 +13,9 @@ export default function Booking() {
 
     const param = useParams();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+
+    // const dispatch = useDispatch()
 
     useEffect(() => {
         fetchRoomList();
@@ -40,23 +43,34 @@ export default function Booking() {
         setDanhSachGhe(data);
     };
 
-    const handleBookingTicket = async () => {
-        const danhSachVe = danhSachGhe.map((ele) => {
-            return {
-                maGhe: ele.maGhe,
-                giaVe: ele.giaVe,
-            };
-        });
+    // const handleBookingTicket = async () => {
+    //     const danhSachVe = danhSachGhe.map((ele) => {
+    //         return {
+    //             maGhe: ele.maGhe,
+    //             giaVe: ele.giaVe,
+    //         };
+    //     });
 
-        const submitData = {
-            maLichChieu: param.maLichChieu,
-            danhSachVe,
-        };
+    //     const tenGhe = danhSachGhe.map((ele) => {
+    //         return ele.tenGhe;
+    //     });
 
-        await bookingTicketApi(submitData);
+    //     const submitData = {
+    //         tenGhe,
+    //         gioChieu: roomList.thongTinPhim.gioChieu,
+    //         ngayChieu: roomList.thongTinPhim.ngayChieu,
+    //         tenPhim: roomList.thongTinPhim.tenPhim,
+    //         maLichChieu: param.maLichChieu,
+    //         danhSachVe,
+    //     };
 
-        navigate("/");
-    };
+
+    //     dispatch(addToCartAction(submitData));
+
+    //     // await bookingTicketApi(submitData);
+
+    //     // navigate("/");
+    // };
 
     return roomList ? (
         <div id="movies_booking">
@@ -149,7 +163,9 @@ export default function Booking() {
                                     </span>
                                     vnđ
                                 </p>
-                                <button>Thêm vào giỏ hàng</button>
+                                <button>
+                                    Thêm vào giỏ hàng
+                                </button>
                             </div>
                         </div>
                     </div>

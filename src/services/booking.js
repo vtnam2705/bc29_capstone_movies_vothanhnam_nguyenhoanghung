@@ -7,15 +7,24 @@ const fetchRoomListApi = (showTimeId) => {
     })
 }
 
-const bookingTicketApi = data => {
+const bookingTicketApi = (data) => {
     return request({
         url: '/QuanLyDatVe/DatVe',
-        method: 'post',
+        method: 'POST',
         data,
     })
 }
 
+
+const bookingTicketManage = (data) => {
+    return request({
+        url: '/QuanLyDatVe/TaoLichChieu',
+        method: 'POST',
+        data
+    })
+}
 export {
     fetchRoomListApi,
-    bookingTicketApi
+    bookingTicketApi,
+    bookingTicketManage
 }

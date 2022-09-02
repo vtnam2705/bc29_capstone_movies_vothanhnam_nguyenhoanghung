@@ -1,3 +1,5 @@
 const SET_USER_INFO = "SET_USER_INFO";
 
-export {SET_USER_INFO}
+const ADD_TO_CART = "ADD_TO_CART";
+
+export {SET_USER_INFO, ADD_TO_CART}

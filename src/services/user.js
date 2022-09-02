@@ -8,4 +8,13 @@ const loginApi = (data) => {
     })
 }
 
-export { loginApi }
+
+const registerApi = (data) => {
+    return request({
+        data: data,
+        url: '/QuanLyNguoiDung/DangKy',
+        method: 'POST'
+    })
+}
+
+export { loginApi, registerApi }

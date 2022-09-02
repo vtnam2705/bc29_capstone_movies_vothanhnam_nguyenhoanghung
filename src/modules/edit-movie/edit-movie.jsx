@@ -20,7 +20,7 @@ import { useAsync } from '../../hooks/useAsync';
 import { addMovieuploadImage, fetchMovieDetailApi, updateMovieUploadImage } from '../../services/movie';
 import moment from 'moment';
 
-export default function MovieForm() {
+export default function EditMovie() {
     const [componentSize, setComponentSize] = useState('default');
     // Display image through base64 image
     const [image, setImage] = useState();
@@ -38,7 +38,7 @@ export default function MovieForm() {
     });
 
     useEffect(() => {
-        if(movieDetails) {
+        if (movieDetails) {
             form.setFieldsValue({
                 ...movieDetails,
                 ngayKhoiChieu: moment(movieDetails.ngayKhoiChieu),
@@ -57,41 +57,43 @@ export default function MovieForm() {
         values.maNhom = GROUP_ID;
 
         const formData = new FormData();
-
         // loop object values
         for (const key in values) {
             formData.append(key, values[key])
         }
-
         // set condition file
         file && formData.append('File', file, file.name);
-
         params.movieId && formData.append("maPhim", params.movieId)
 
-        if(params.movieId) {
+        if (params.movieId) {
             await updateMovieUploadImage(formData)
-        } else{
+            // notification update film successful
+            notification.success({
+                description: "Update film successfully!!!!"
+            })
+        } else {
             await addMovieuploadImage(formData);
+            // notification add moivie successful
+            notification.success({
+                description: "Add new movie successfully!!!!"
+            })
         }
 
-        // notification add moivie success
-        notification.success({
-            description: "Add new movie successfully!!!!"
-        })
         // after add new movie to api => navigate to movie list in admin page
         navigate('/admin/movie-management')
     }
 
     const handleChangeImage = (event) => {
         const file = event.target.files[0]
+        if (file.type === 'image/png' || file.type === 'image/jpeg') {
+            const reader = new FileReader()
 
-        const reader = new FileReader()
-
-        reader.readAsDataURL(file);
-        reader.onload = (e) => {
-            setImage(e.target.result);
-            setFile(file);
-        };
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                setImage(e.target.result);
+                setFile(file);
+            };
+        }
     }
 
     return (
@@ -138,7 +140,7 @@ export default function MovieForm() {
             </Form.Item>
 
             <Form.Item label="Ngày khởi chiếu" name='ngayKhoiChieu'>
-                <DatePicker />
+                <DatePicker format={'DD/MM/YYYY'} />
             </Form.Item>
 
             <Form.Item label="Đang chiếu" valuePropName="checked" name='dangChieu'>
@@ -153,15 +155,15 @@ export default function MovieForm() {
                 <Switch />
             </Form.Item>
 
-            <Form.Item label="Số sao" name='danhGia'>
-                <InputNumber />
+            <Form.Item label="Đánh giá phim" name='danhGia'>
+                <InputNumber min={0} max={10} />
             </Form.Item>
 
             <Form.Item label='Hình ảnh'>
-                <Input type='file' onChange={handleChangeImage} />
+                <Input type='file' onChange={handleChangeImage} accept='image/png, image/jpeg' />
             </Form.Item>
-
-            <Image src={image} />
+            <br />
+            <Image style={{ width: 150, height: 150 }} src={image} alt='....' className='mb-2' />
 
             <Form.Item>
                 <Button htmlType='submit' type='primary'>Save</Button>
