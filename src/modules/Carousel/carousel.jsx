@@ -3,11 +3,13 @@ import { fetchMovieListApi } from "../../services/movie";
 import { Carousel as CarouselAntd } from "antd";
 
 const contentStyle = {
-  height: "600px",
+  height: "100vh",
+  width: "100vw",
+  padding: "50px",
+  backgroundSize: 'cover',
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
-  background: "#364d79",
 };
 
 export default function Carousel() {
@@ -26,10 +28,10 @@ export default function Carousel() {
   const renderCarousel = () => {
     return movieList.map((ele, idx) => {
       return (
-        <div key={idx}>
+        <div key={idx} className="carousel-item">
           <img
             style={contentStyle}
-            className="card_img img-fluid m-auto"
+            className="card_img d-block w-100"
             src={ele.hinhAnh}
           />
         </div>
@@ -38,7 +40,7 @@ export default function Carousel() {
   };
 
   return (
-    <CarouselAntd autoplay className="container py-5">
+    <CarouselAntd autoplay className="py-5">
       {renderCarousel()}
     </CarouselAntd>
   );

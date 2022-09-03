@@ -13,10 +13,6 @@ export default function Booking() {
 
     const param = useParams();
 
-    // const navigate = useNavigate();
-
-    // const dispatch = useDispatch()
-
     useEffect(() => {
         fetchRoomList();
     }, []);
@@ -76,7 +72,7 @@ export default function Booking() {
         <div id="movies_booking">
             <div className="w-75 mx-auto py-5">
                 <div className="booking_content row">
-                    <div className="border_chair col-sm-12 col-md-12 col-lg-8 col-xl-8">
+                    <div className="border_chair col-sm-12 col-md-12 col-lg-9 col-xl-9">
                         <div className="screen">
                             <div className="screen_content py-3">
                                 <h6 className="text-center">Màn hình</h6>
@@ -94,76 +90,87 @@ export default function Booking() {
                                 })}
                             </div>
                         </div>
-                        <div className="chair_decript row container">
+                        <div className='w-75 mx-auto d-flex justify-content-between'>
                             <div className="row">
                                 <button className="ghe gheVip"></button>
-                                <h5>Ghế Vip</h5>
+                                <h5 className='mb-0 d-flex align-items-center'>Ghế Vip</h5>
                             </div>
                             <div className="row">
                                 <button className="ghe dangDat"></button>
-                                <h5>Ghế Đang Chọn</h5>
+                                <h5 className='mb-0 d-flex align-items-center'>Ghế Đang Chọn</h5>
                             </div>
                             <div className="row">
                                 <button className="ghe daDat"></button>
-                                <h5>Ghế Đã chọn</h5>
+                                <h5 className='mb-0 d-flex align-items-center'>Ghế Đã chọn</h5>
                             </div>
                             <div className="row">
                                 <button className="ghe"></button>
-                                <h5>Ghế Còn Trống</h5>
+                                <h5 className='mb-0 d-flex align-items-center'>Ghế Còn Trống</h5>
                             </div>
                         </div>
                     </div>
-                    <div className="border_detail col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                    <div className="border_detail col-sm-12 col-md-12 col-lg-3 col-xl-3">
                         <div className="detail_img">
                             <img className="img-fluid" src={roomList.thongTinPhim.hinhAnh} />
                         </div>
                         <div className="detail_content py-2">
                             <div className="content_title">
                                 <h1>{roomList.thongTinPhim.tenPhim}</h1>
-                                <div className="gioChieu">
-                                    <span className="title">Giờ chiếu : </span>
+                                <div className="gioChieu d-flex justify-content-between">
+                                    <span className="title text-danger font-weight-bold">Giờ chiếu</span>
                                     <span className="content">
                                         {roomList.thongTinPhim.gioChieu}
                                     </span>
                                 </div>
-                                <div className="ngayChieu">
-                                    <span className="title">Ngày chiếu : </span>
+                                <hr />
+                                <div className="ngayChieu d-flex justify-content-between">
+                                    <span className="title font-weight-bold">Ngày chiếu</span>
                                     <span className="content">
                                         {/* {formatDate(roomList.thongTinPhim.ngayChieu)} */}
                                         {roomList.thongTinPhim.ngayChieu}
                                     </span>
                                 </div>
+                                <hr />
                                 <div className="diaChi">
-                                    <span className="title">Địa Chỉ : </span>
+                                    <span className="title font-weight-bold">Địa Chỉ : </span>
                                     <span className="content">
                                         {roomList.thongTinPhim.diaChi}
                                     </span>
                                 </div>
+                                <hr />
                                 <div className="rap">
-                                    <span className="content">
+                                    <span className="content font-weight-bold">
                                         {roomList.thongTinPhim.tenRap}
                                     </span>
                                 </div>
-                                <p>
-                                    Ghế: {danhSachGhe.map(
-                                        ele => (
-                                            ele.loaiGhe === 'Thuong' ?
-                                                <span className='mr-2 badge badge-success'>{ele.tenGhe}</span>
-                                                : <span className='mr-2 badge badge-danger'>{ele.tenGhe}</span>
-                                        )
-                                    )}
-                                </p>
-                                <p>
-                                    Tổng tiền:
-                                    <span className='ml-2'>
+                                <hr />
+                                <div className='d-flex justify-content-between'>
+                                    <p className='font-weight-bold'>
+                                        Ghế
+                                    </p>
+                                    <span>
+                                        {danhSachGhe.map(
+                                            ele => (
+                                                ele.loaiGhe === 'Thuong' ?
+                                                    <span className='mr-2 badge badge-success'>{ele.tenGhe}</span>
+                                                    : <span className='mr-2 badge badge-danger'>{ele.tenGhe}</span>
+                                            )
+                                        )}
+                                    </span>
+                                </div>
+                                <hr />
+                                <div className=" d-flex justify-content-between">
+                                    <p className='font-weight-bold'>
+                                        Tổng tiền
+                                    </p>
+                                    <span className='ml-2 font-weight-bold text-success'>
                                         {danhSachGhe.reduce((previousValue, currentValue) => {
                                             previousValue += currentValue.giaVe
                                             return previousValue
-                                        }, 0).toLocaleString()}
+                                        }, 0).toLocaleString()} vnđ
                                     </span>
-                                    vnđ
-                                </p>
-                                <button>
+                                </div>
+                                <button className='w-100'>
                                     Thêm vào giỏ hàng
                                 </button>
                             </div>
