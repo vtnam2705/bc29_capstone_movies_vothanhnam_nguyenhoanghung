@@ -66,11 +66,18 @@ export default function EditMovie() {
         params.movieId && formData.append("maPhim", params.movieId)
 
         if (params.movieId) {
-            await updateMovieUploadImage(formData)
-            // notification update film successful
-            notification.success({
-                description: "Update film successfully!!!!"
-            })
+            try {
+                const updateMovie = await updateMovieUploadImage(formData);
+                // notification update film successful
+                notification.success({
+                    description: `${updateMovie.data.message}`
+                })
+            } catch (error) {
+                notification.error({
+                    description: `${error.response.data.content}`
+                })
+            }
+
         } else {
             await addMovieuploadImage(formData);
             // notification add moivie successful

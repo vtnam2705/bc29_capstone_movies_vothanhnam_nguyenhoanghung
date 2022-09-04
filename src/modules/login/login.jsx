@@ -25,16 +25,22 @@ export default function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        try {
+            const result = await loginApi(login);
+            // Save user, password to local storage in order to web will be auto-login when accessing
+            localStorage.setItem(USER_INFO_KEY, JSON.stringify(result.data.content))
+            // dispatch data to store
+            dispatch(setUserInfoAction(result.data.content))
+            // Alert login successful
+            notification.success('Login Successful!!!')
+            // After login, return home page
+            navigate('/')
+        } catch (error) {
+            // notification.error(`${error.response.data.content}`);
+            alert(`${error.response.data.content}`)
+            navigate('/login')
+        }
 
-        const result = await loginApi(login);
-        // Save user, password to local storage in order to web will be auto-login when accessing
-        localStorage.setItem(USER_INFO_KEY, JSON.stringify(result.data.content))
-        // dispatch data to store
-        dispatch(setUserInfoAction(result.data.content))
-        // Alert login successful
-        notification.success('Login Successful!!!')
-        // After login, return home page
-        navigate('/')
     }
 
     return (

@@ -3,9 +3,10 @@ import { useRoutes } from 'react-router-dom'
 import CartDetail from '../modules/cart/cart';
 import Register from '../modules/register/register';
 import Schedule from '../modules/Schedule/schedule';
+import CreateUserPage from '../pages/create-user/create-user';
 import PageNotFound from '../pages/PageNotFound/PageNotFound';
-import UpdateInfoUserPage from '../pages/update-info-user/update-info-user-page';
 import UpdateMovie from '../pages/update-movie/update-movie';
+import UserManagementPage from '../pages/user-management/user-management';
 const NoAuthGuard = lazy(() => import('../guards/no-auth-guard'));
 const AuthGuard = lazy(() => import('../guards/auth-guard'));
 const HomeLayouts = lazy(() => import('../layouts/home'));
@@ -56,10 +57,6 @@ export default function Router() {
                     path: '/register',
                     element: <Register/>
                 },
-                {
-                    path: '/UpdateInfo',
-                    element: <UpdateInfoUserPage/>
-                }
             ]
         },
 
@@ -86,6 +83,14 @@ export default function Router() {
                         {
                             path: '/admin/movie-management/showtime/:movieId',
                             element: <Schedule/>
+                        },
+                        {
+                            path: '/admin/user-management',
+                            element: <UserManagementPage/>
+                        },
+                        {
+                            path: '/admin/user-management/create',
+                            element: <CreateUserPage/>
                         }
                     ]
                 }

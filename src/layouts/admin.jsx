@@ -4,10 +4,13 @@ import {
     PieChartOutlined,
     TeamOutlined,
     UserOutlined,
+    EyeOutlined,
+    FolderViewOutlined,
+    FolderAddOutlined
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -20,21 +23,31 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-        getItem('Tom', '3'),
-        getItem('Bill', '4'),
-        getItem('Alex', '5'),
+    // getItem('Option 1', '1', <PieChartOutlined />),
+    // getItem('Option 2', '2', <DesktopOutlined />),
+    // getItem('User', 'sub1', <UserOutlined />, [
+    //     getItem('Tom', '3'),
+    //     getItem('Bill', '4'),
+    //     getItem('Alex', '5'),
+    // ]),
+    getItem('Users', 'sub1', <UserOutlined />, [
+        getItem('User Admin', '/admin/user-management', <UserOutlined />),
+        getItem('Add User ', '/admin/user-management/create', <UserOutlined />),
     ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />),
+    getItem('Films', 'sub2', <EyeOutlined />, [
+        getItem('Film', '/admin/movie-management', <FolderViewOutlined />),
+        getItem('Add Moive', '/admin/movie-management/create', <FolderAddOutlined />),
+    ]),
 ];
 
 
 
 export default function AdminLayout() {
     const [collapsed, setCollapsed] = useState(false);
+    const navigate = useNavigate()
+    const handleClick = (e) => {
+        navigate(`${e.key}`)
+    }
     return (
         <Layout
             style={{
@@ -43,7 +56,14 @@ export default function AdminLayout() {
         >
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div className="logo" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+                <Menu
+                    onClick={handleClick}
+                    theme="dark"
+                    defaultSelectedKeys={['admin/movie-management']}
+                    defaultOpenKeys={['sub2']}
+                    mode="inline"
+                    items={items}
+                />
             </Sider>
             <Layout className="site-layout">
                 <Header
@@ -57,14 +77,14 @@ export default function AdminLayout() {
                         margin: '0 16px',
                     }}
                 >
-                    <Breadcrumb
+                    {/* <Breadcrumb
                         style={{
                             margin: '16px 0',
                         }}
                     >
                         <Breadcrumb.Item>User</Breadcrumb.Item>
                         <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
+                    </Breadcrumb> */}
                     <div
                         className="site-layout-background"
                         style={{
@@ -72,7 +92,7 @@ export default function AdminLayout() {
                             minHeight: 360,
                         }}
                     >
-                        <Outlet/>
+                        <Outlet />
                     </div>
                 </Content>
                 <Footer

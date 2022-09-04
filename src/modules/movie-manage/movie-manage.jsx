@@ -20,30 +20,35 @@ export default function MovieManage() {
         service: () => fetchMovieListApi()
     })
 
-    // **** Search function - start ****
-    const [searchInput, setSearchInput] = useState('');
+    const [keyword, setKeyword] = useState('')
 
-    // Technique debounce    
-    const typingTimeoutRef = useRef(null)
-    const handleChange = (e) => {
-        const { value } = e.target;
-        setSearchInput(value);
+    // // **** Search function - start ****
+    // const [searchInput, setSearchInput] = useState('');
 
-        if (typingTimeoutRef.current) {
-            clearTimeout(typingTimeoutRef.current)
-        };
+    // // Technique debounce    
+    // const typingTimeoutRef = useRef(null)
+    // const handleChange = (e) => {
+    //     const { value } = e.target;
+    //     setSearchInput(value);
 
-        typingTimeoutRef.current = setTimeout(() => {
-            const filtered = handleFilterChange;
-        }, 300)
+    //     if (typingTimeoutRef.current) {
+    //         clearTimeout(typingTimeoutRef.current)
+    //     };
+
+    //     typingTimeoutRef.current = setTimeout(() => {
+    //         const filtered = handleFilterChange;
+    //     }, 300)
+    // }
+
+    // const handleFilterChange = !searchInput
+    //     ? data
+    //     : data.filter((ele) =>
+    //         ele.tenPhim.toLowerCase().includes(searchInput.toLowerCase())
+    //     )
+    // // **** Search function - end ****
+    const onChange = (event) => {
+        setKeyword(event.target.value)
     }
-
-    const handleFilterChange = !searchInput
-        ? data
-        : data.filter((ele) =>
-            ele.tenPhim.toLowerCase().includes(searchInput.toLowerCase())
-        )
-    // **** Search function - end ****
 
     const columns = [
         {
@@ -115,7 +120,7 @@ export default function MovieManage() {
                     enterButton="Search"
                     size="large"
                     // onSearch={onSearch}
-                    onChange={handleChange}
+                    onChange={onChange}
                 />
                 <div className=''>
                     <Button
