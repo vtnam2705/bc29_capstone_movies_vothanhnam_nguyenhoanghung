@@ -27,7 +27,6 @@ export default function Login() {
         event.preventDefault();
 
         const result = await loginApi(login);
-        console.log(result)
         // Save user, password to local storage in order to web will be auto-login when accessing
         localStorage.setItem(USER_INFO_KEY, JSON.stringify(result.data.content))
         // dispatch data to store

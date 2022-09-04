@@ -1,8 +1,10 @@
+import { notification } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
+import { ThongTinDatVe } from '../../enums/common';
 import MovieChair from '../../modules/Movie-seat/movie-chair';
-import { fetchRoomListApi, bookingTicketApi } from '../../services/booking'
+import { fetchRoomListApi, bookingTicketApi, bookingTickets } from '../../services/booking'
 import { formatDate } from '../../utils/common';
 import './booking.scss'
 
@@ -13,10 +15,11 @@ export default function Booking() {
 
     const param = useParams();
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         fetchRoomList();
     }, []);
-
     const fetchRoomList = async () => {
         const result = await fetchRoomListApi(param.maLichChieu);
 
@@ -25,7 +28,6 @@ export default function Booking() {
 
     const handleSelect = (selectedSeat) => {
         const data = [...danhSachGhe];
-
         const idx = danhSachGhe.findIndex(
             (ele) => ele.tenGhe === selectedSeat.tenGhe
         );
@@ -39,44 +41,27 @@ export default function Booking() {
         setDanhSachGhe(data);
     };
 
-    // const handleBookingTicket = async () => {
-    //     const danhSachVe = danhSachGhe.map((ele) => {
-    //         return {
-    //             maGhe: ele.maGhe,
-    //             giaVe: ele.giaVe,
-    //         };
-    //     });
 
-    //     const tenGhe = danhSachGhe.map((ele) => {
-    //         return ele.tenGhe;
-    //     });
+    const handleBookingTickets = async (data) => {
+        const thongTinDatVe = new ThongTinDatVe();
+        thongTinDatVe.maLichChieu = param.maLichChieu;
+        thongTinDatVe.danhSachVe = danhSachGhe;
 
-    //     const submitData = {
-    //         tenGhe,
-    //         gioChieu: roomList.thongTinPhim.gioChieu,
-    //         ngayChieu: roomList.thongTinPhim.ngayChieu,
-    //         tenPhim: roomList.thongTinPhim.tenPhim,
-    //         maLichChieu: param.maLichChieu,
-    //         danhSachVe,
-    //     };
-
-
-    //     dispatch(addToCartAction(submitData));
-
-    //     // await bookingTicketApi(submitData);
-
-    //     // navigate("/");
-    // };
+        const result = await bookingTickets(thongTinDatVe);
+        navigate('/')
+        notification.success({
+            description: `${result.data.content}`
+        })
+    }
 
     return roomList ? (
         <div id="movies_booking">
             <div className="w-75 mx-auto py-5">
                 <div className="booking_content row">
                     <div className="border_chair col-sm-12 col-md-12 col-lg-9 col-xl-9">
-                        <div className="screen">
-                            <div className="screen_content py-3">
-                                <h6 className="text-center">Màn hình</h6>
-                            </div>
+                        <div className="screen_content p-2 mt-2 bg-dark"></div>
+                        <div className='trapezoid'>
+                            <h4 className='d-flex justify-content-center align-items-center'>Screen</h4>
                         </div>
                         <div className="chair ml-0 py-3">
                             <div className="chair_layout">
@@ -101,7 +86,7 @@ export default function Booking() {
                             </div>
                             <div className="row">
                                 <button className="ghe daDat"></button>
-                                <h5 className='mb-0 d-flex align-items-center'>Ghế Đã chọn</h5>
+                                <h5 className='mb-0 d-flex align-items-center'>Ghế Đã Đặt</h5>
                             </div>
                             <div className="row">
                                 <button className="ghe"></button>
@@ -170,7 +155,7 @@ export default function Booking() {
                                         }, 0).toLocaleString()} vnđ
                                     </span>
                                 </div>
-                                <button className='w-100'>
+                                <button onClick={() => { handleBookingTickets() }} className='w-100'>
                                     Thêm vào giỏ hàng
                                 </button>
                             </div>

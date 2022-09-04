@@ -8,3 +8,8 @@ export const LoaiGhe = {
     Vip: "Vip",
     Thuong: "Thuong"
 }
+
+export class ThongTinDatVe {
+    maLichChieu = 0;
+    danhSachVe = [];
+}

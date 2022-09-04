@@ -10,12 +10,8 @@ import { MaLoaiNguoiDung } from "../../enums/common";
 export default function Header() {
     const dispatch = useDispatch();
     const userState = useSelector((state) => state.userReducer);
-    // console.log(userState)
     const navigate = useNavigate();
-    // const { cartList = [] } = userState;
-
-    // console.log(cartList)
-
+    
     const handleLogout = () => {
         localStorage.removeItem(USER_INFO_KEY)
         dispatch(setUserInfoAction(null));
@@ -82,7 +78,7 @@ export default function Header() {
                                 <>
                                     <NavLink to={'/UpdateInfo'} className='text-decoration-none text-success'>
                                         {userState.userInfo.maLoaiNguoiDung !== MaLoaiNguoiDung.QuanTri ? (
-                                            `Welcome ${userState.userInfo.hoTen}!!!!`
+                                            `Welcome user ${userState.userInfo.hoTen}!!!!`
                                         ) : (
                                             `Welcome Admin ${userState.userInfo.hoTen}!!!!`
                                         )}

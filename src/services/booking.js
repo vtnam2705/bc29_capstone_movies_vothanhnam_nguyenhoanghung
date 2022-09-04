@@ -1,4 +1,5 @@
 import { request } from "../configs/axios"
+import { ThongTinDatVe } from "../enums/common"
 
 const fetchRoomListApi = (showTimeId) => {
     return request({
@@ -23,8 +24,18 @@ const bookingTicketManage = (data) => {
         data
     })
 }
+
+const bookingTickets = (data = new ThongTinDatVe()) => {
+    return request({
+        url: '/QuanLyDatVe/DatVe',
+        method: 'POST',
+        data
+    })
+}
+
 export {
     fetchRoomListApi,
     bookingTicketApi,
-    bookingTicketManage
+    bookingTicketManage,
+    bookingTickets
 }
