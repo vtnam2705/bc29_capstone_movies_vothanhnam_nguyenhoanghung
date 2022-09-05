@@ -32,7 +32,9 @@ export default function Login() {
             // dispatch data to store
             dispatch(setUserInfoAction(result.data.content))
             // Alert login successful
-            notification.success('Login Successful!!!')
+            notification.success({
+                message: 'Login successfully!!!'
+            })
             // After login, return home page
             navigate('/')
         } catch (error) {

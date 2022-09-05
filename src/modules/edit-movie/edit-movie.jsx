@@ -19,6 +19,7 @@ import { GROUP_ID } from '../../constants/common';
 import { useAsync } from '../../hooks/useAsync';
 import { addMovieuploadImage, fetchMovieDetailApi, updateMovieUploadImage } from '../../services/movie';
 import moment from 'moment';
+import { isEmpty } from 'lodash';
 
 export default function EditMovie() {
     const [componentSize, setComponentSize] = useState('default');
@@ -68,10 +69,10 @@ export default function EditMovie() {
         if (params.movieId) {
             try {
                 const updateMovie = await updateMovieUploadImage(formData);
-                // notification update film successful
                 notification.success({
                     description: `${updateMovie.data.message}`
-                })
+                });
+                navigate('/admin/movie-management');
             } catch (error) {
                 notification.error({
                     description: `${error.response.data.content}`
@@ -80,14 +81,14 @@ export default function EditMovie() {
 
         } else {
             await addMovieuploadImage(formData);
-            // notification add moivie successful
             notification.success({
                 description: "Add new movie successfully!!!!"
-            })
+            });
+            navigate('/admin/movie-management');
         }
 
         // after add new movie to api => navigate to movie list in admin page
-        navigate('/admin/movie-management')
+        // navigate('/admin/movie-management')
     }
 
     const handleChangeImage = (event) => {
@@ -134,19 +135,76 @@ export default function EditMovie() {
                 </Radio.Group>
             </Form.Item>
 
-            <Form.Item label="Tên phim" name='tenPhim'>
+            <Form.Item
+                label="Tên phim"
+                name='tenPhim'
+                rules={[
+                    {
+                        validator: (rules, value) => {
+                            if (isEmpty(value)) {
+                                return Promise.reject('Tên phim là bắt buộc')
+                            }
+                            return Promise.resolve()
+                        },
+                    },
+                    {
+                        pattern:
+                            '[a-zA-Z]{4,}',
+                        message: 'Tên phim không đúng định dạng ',
+                    },
+                ]}
+            >
                 <Input />
             </Form.Item>
 
-            <Form.Item label="Trailer" name='trailer'>
+            <Form.Item
+                label="Trailer"
+                name='trailer'
+                rules={[
+                    {
+                        validator: (rules, value) => {
+                            if (isEmpty(value)) {
+                                return Promise.reject('Trailer là bắt buộc')
+                            }
+                            return Promise.resolve()
+                        },
+                    },
+                ]}
+            >
                 <Input />
             </Form.Item>
 
-            <Form.Item label="Mô tả" name='moTa'>
+            <Form.Item
+                label="Mô tả"
+                name='moTa'
+                rules={[
+                    {
+                        validator: (rules, value) => {
+                            if (isEmpty(value)) {
+                                return Promise.reject('Mô tả là bắt buộc')
+                            }
+                            return Promise.resolve()
+                        },
+                    },
+                ]}
+            >
                 <Input />
             </Form.Item>
 
-            <Form.Item label="Ngày khởi chiếu" name='ngayKhoiChieu'>
+            <Form.Item
+                label="Ngày khởi chiếu"
+                name='ngayKhoiChieu'
+                rules={[
+                    {
+                        validator: (rules, value) => {
+                            if (isEmpty(value)) {
+                                return Promise.reject('Ngày khởi chiếu là bắt buộc')
+                            }
+                            return Promise.resolve()
+                        },
+                    },
+                ]}
+            >
                 <DatePicker format={'DD/MM/YYYY'} />
             </Form.Item>
 
@@ -172,8 +230,21 @@ export default function EditMovie() {
             <br />
             <Image style={{ width: 150, height: 150 }} src={image} alt='....' className='mb-2' />
 
-            <Form.Item>
-                <Button htmlType='submit' type='primary'>Save</Button>
+            <Form.Item shouldUpdate>
+                {() => {
+                    return (
+                        <Button
+                            htmlType='submit'
+                            type='primary'
+                            disabled={
+                                !form.isFieldsTouched() ||
+                                form.getFieldsError().some((ele) => ele.errors.length > 0)
+                            }
+                        >
+                            Save
+                        </Button>
+                    )
+                }}
             </Form.Item>
         </Form>
     );

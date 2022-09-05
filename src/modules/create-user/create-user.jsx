@@ -35,11 +35,26 @@ export default function CreateUser() {
 
         console.log(data)
         if (params.userId) {
-            await updateUserInfoAdminApi(data)
+            try {
+                const updateUserInfo = await updateUserInfoAdminApi(data);
+                notification.success({ message: `${updateUserInfo.data.message}` })
+                navigate('/admin/user-management')
+            } catch (error) {
+                notification.error({
+                    description: `${error.response.data.content}`
+                })
+            }
         } else {
-            await addUserAdminApi(data)
+            try {
+                const addUser = await addUserAdminApi(data);
+                notification.success({ message: `${addUser.data.message}` });
+                navigate('/admin/user-management');
+            } catch (error) {
+                notification.error({
+                    description: `${error.response.data.content}`
+                });
+            }
         }
-        notification.success({ message: 'Successfully' })
     }
     return TypeUser ? (
         <div className="container">
@@ -58,10 +73,10 @@ export default function CreateUser() {
                                     message: 'Tài khoản không được bỏ trống.',
 
                                 },
-                                {
-                                    pattern: '[a-zA-Z]{4,}',
-                                    message: 'Tài khoản không đúng định dạng.',
-                                },
+                                // {
+                                //     pattern: '[a-zA-Z]{4,}',
+                                //     message: 'Tài khoản không đúng định dạng.',
+                                // },
                                 {
                                     min: 6,
                                     max: 15,
@@ -153,17 +168,26 @@ export default function CreateUser() {
                             </Select>
                         </Form.Item>
 
-                        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                            <div className="text-right">
-                                <Button type="primary" htmlType="submit" className="mr-2">
-                                    {params.userId ? 'Update' : 'Add'}
-                                </Button>
-                            </div>
+                        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }} shouldUpdate>
+                            {() => {
+                                return (
+                                    <div className="text-right">
+                                        <Button
+                                            type="primary"
+                                            htmlType="submit"
+                                            className="mr-2"
+                                            disabled={
+                                                !form.isFieldsTouched() ||
+                                                form.getFieldsError().some((ele) => ele.errors.length > 0)
+                                            }
+                                        >
+                                            {params.userId ? 'Update' : 'Add'}
+                                        </Button>
+                                    </div>
+                                )
+                            }}
                         </Form.Item>
                     </Form>
-                    {/* <a onClick={() => navigate('/admin/user-management')} className="text-primary">
-                        &lt;&lt; Back
-                    </a> */}
                 </div>
             </div>
         </div>

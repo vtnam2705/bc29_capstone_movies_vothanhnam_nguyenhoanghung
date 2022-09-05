@@ -107,56 +107,6 @@ export default function Header() {
                         )}
                     </div>
                 </>
-                {/* <div className="cart ml-auto">
-                    <div className="cart_layout">
-                        <div className="cart_content dropdown">
-                            <button
-                                className="btn dropdown-toggle"
-                                type="button"
-                                id="dropdownMenuButton"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                onClick={() => navigate("/cart")}
-                            >
-                                <i className="fas fa-shopping-cart" />
-                                <span className="quantities">
-                                    {userState.cartList.length}
-                                </span>
-                            </button>
-                            <div
-                                className="dropdown-menu"
-                                aria-labelledby="dropdownMenuButton"
-                            >
-                                <div className="modal-body">
-                                    <form>
-                                        <table className="table text-center">
-                                            <thead>
-                                                <tr>
-                                                    <th>Tên Phim</th>
-                                                    <th>Ghế</th>
-                                                    <th>Ngày chiếu</th>
-                                                    <th>Giờ chiếu</th>
-                                                    <th>Tổng tiền</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="cartBody">{renderTableBody()}</tbody>
-                                        </table>
-                                        <div className="modal-footer">
-                                            <button
-                                                onClick={() => navigate("/cart")}
-                                                type="button"
-                                                className="btn btn-primary"
-                                            >
-                                                Thanh toán
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
             </nav>
         </>
     );

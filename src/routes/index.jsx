@@ -6,6 +6,7 @@ import Schedule from '../modules/Schedule/schedule';
 import CreateUserPage from '../pages/create-user/create-user';
 import PageNotFound from '../pages/PageNotFound/PageNotFound';
 import UpdateMovie from '../pages/update-movie/update-movie';
+import UpdateUser from '../pages/update-user/update-user';
 import UserManagementPage from '../pages/user-management/user-management';
 const NoAuthGuard = lazy(() => import('../guards/no-auth-guard'));
 const AuthGuard = lazy(() => import('../guards/auth-guard'));
@@ -91,7 +92,11 @@ export default function Router() {
                         {
                             path: '/admin/user-management/create',
                             element: <CreateUserPage/>
-                        }
+                        },
+                        {
+                            path: '/admin/user-management/update/:userId',
+                            element: <UpdateUser />,
+                        },
                     ]
                 }
             ]

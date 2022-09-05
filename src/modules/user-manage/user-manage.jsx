@@ -1,39 +1,44 @@
-import { Button, notification, Space, Table, Input } from 'antd'
+import { Button, notification, Space, Table, Input } from 'antd';
 import { useAsync } from '../../hooks/useAsync';
-import React, { useState } from 'react'
-import { fetchUserListApi } from '../../services/user'
-
-import { EditFilled, DeleteFilled } from '@ant-design/icons'
+import React, { useState } from 'react';
+import { fetchUserListApi } from '../../services/user';
+import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import { deleteUserApi, searchUserApi } from '../../services/user';
 
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const { Search } = Input
 export default function UserManage() {
-    const navigate = useNavigate()
-    const [keyword, setKeyword] = useState('')
+    const navigate = useNavigate();
+    const [keyWord, setKeyWord] = useState('');
 
-    const { state: data = [], refetch } = useAsync({
+    let { state: data = [] } = useAsync({
         service: () => fetchUserListApi(),
-    })
+    });
 
     const deleteUser = async (taiKhoan) => {
-        await deleteUserApi(taiKhoan)
-        notification.success({ message: 'Successfuly' })
-        refetch()
-    }
+        await deleteUserApi(taiKhoan);
+        notification.success({ message: 'Successfuly' });
+    };
 
     const { state: searchUser } = useAsync({
-        service: () => searchUserApi(keyword),
-        dependencies: [keyword],
-    })
+        service: () => searchUserApi(keyWord),
+        dependencies: [keyWord],
+    });
 
-    const onChange = (event) => {
-        setKeyword(event.target.value)
+    const onChange = (e) => {
+        const { value } = e.target
+        setKeyWord(value)
     }
 
-    let count = 0
+    if (keyWord !== '') {
+        data = data.filter(
+            (ele) =>
+                ele.hoTen.toLowerCase().includes(keyWord.toLowerCase())
+        )
+    }
+    let count = 0;
 
     const columns = [
         {

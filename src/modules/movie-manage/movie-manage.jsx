@@ -4,52 +4,40 @@ import { useAsync } from '../../hooks/useAsync';
 import { deleteMovie, fetchMovieListApi } from '../../services/movie';
 import { formatDate } from '../../utils/common';
 import { useNavigate } from 'react-router-dom'
-import { useRef } from 'react';
 
 
 const { Search } = Input;
 
-// const onSearch = async (value) => {
-//     console.log(value);
-//     await fetchMovieListApi(value)
-// }
-
 export default function MovieManage() {
-    const navigate = useNavigate()
-    const { state: data = [] } = useAsync({
+    const navigate = useNavigate();
+    let { state: data = [] } = useAsync({
         service: () => fetchMovieListApi()
     })
-
-    const [keyword, setKeyword] = useState('')
-
-    // // **** Search function - start ****
-    // const [searchInput, setSearchInput] = useState('');
-
-    // // Technique debounce    
-    // const typingTimeoutRef = useRef(null)
-    // const handleChange = (e) => {
-    //     const { value } = e.target;
-    //     setSearchInput(value);
-
-    //     if (typingTimeoutRef.current) {
-    //         clearTimeout(typingTimeoutRef.current)
-    //     };
-
-    //     typingTimeoutRef.current = setTimeout(() => {
-    //         const filtered = handleFilterChange;
-    //     }, 300)
-    // }
-
-    // const handleFilterChange = !searchInput
-    //     ? data
-    //     : data.filter((ele) =>
-    //         ele.tenPhim.toLowerCase().includes(searchInput.toLowerCase())
-    //     )
-    // // **** Search function - end ****
-    const onChange = (event) => {
-        setKeyword(event.target.value)
+    console.log(data)
+    const deleteMovies = async (movieId) => {
+        if (window.confirm('Are your sure want to delete?')) {
+            const result = await deleteMovie(movieId);
+            console.log(result);
+            notification.success({
+                description: `${result.data.content}`
+            });
+            navigate('/admin/movie-management');
+        }
     }
 
+    const [keyWord, setKeyWord] = useState('')
+
+    const onChange = (e) => {
+        const {value} = e.target
+        setKeyWord(value)
+    }
+
+    if (keyWord !== '') {
+        data = data.filter(
+            (ele) =>
+                ele.tenPhim.toLowerCase().includes(keyWord.toLowerCase())
+        )
+    }
     const columns = [
         {
             title: 'Tên phim',
@@ -89,15 +77,7 @@ export default function MovieManage() {
                     <button
                         // style={{ cursor: 'pointer' }}
                         className='btn btn-danger text-white'
-                        onClick={async () => {
-                            if (window.confirm(`Are your sure want to delete ${record.tenPhim} ?`)) {
-                                await deleteMovie(record.maPhim)
-                                notification.success({
-                                    description: "Delete film success!!!!"
-                                })
-                                navigate('/admin/movie-management')
-                            }
-                        }}
+                        onClick={() => { deleteMovies(record.maPhim) }}
                     >
                         Delete
                     </button>
@@ -119,7 +99,6 @@ export default function MovieManage() {
                     placeholder="input search text"
                     enterButton="Search"
                     size="large"
-                    // onSearch={onSearch}
                     onChange={onChange}
                 />
                 <div className=''>

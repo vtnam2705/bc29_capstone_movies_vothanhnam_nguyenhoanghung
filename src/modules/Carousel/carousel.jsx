@@ -33,6 +33,7 @@ export default function Carousel() {
             style={contentStyle}
             className="card_img d-block w-100"
             src={ele.hinhAnh}
+            alt='Images'
           />
         </div>
       );
@@ -40,7 +41,7 @@ export default function Carousel() {
   };
 
   return (
-    <CarouselAntd autoplay className="py-5">
+    <CarouselAntd autoplay className="container">
       {renderCarousel()}
     </CarouselAntd>
   );
