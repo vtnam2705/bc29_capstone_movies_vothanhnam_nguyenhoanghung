@@ -1,5 +1,7 @@
+import { notification } from 'antd'
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { registerApi } from '../../services/user'
 
 
@@ -13,7 +15,7 @@ export default function Register() {
         maNhom: '',
         hoTen: '',
     })
-
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,10 +29,16 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const result = await registerApi(register);
+            notification.success({ message: `${result.data.message}` });
+            navigate('/')
+        } catch (error) {
+            notification.error({
+                description: `${error.response.data.content}`
+            });
+        }
 
-        const result = await registerApi(register);
-
-        console.log(result)
     }
 
 
