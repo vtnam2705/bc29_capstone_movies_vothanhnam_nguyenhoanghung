@@ -100,7 +100,7 @@ export default function AdminLayout() {
                         textAlign: 'center',
                     }}
                 >
-                    Ant Design ©2018 Created by Ant UED
+                    Movie Web Project Created by Vo Thanh Nam & Nguyen Hoang Hung
                 </Footer>
             </Layout>
         </Layout>
