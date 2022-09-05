@@ -47,15 +47,17 @@ export default function Footer() {
                             <div className="footer_title">
                                 <h4>Dowload App</h4>
                             </div>
-                            <div className="app_content">
-                                <div className="apple_store">
+                            <div className="app_content d-flex flex-column align-items-start">
+                                <div className="apple_store mb-2">
                                     <a href="#">
                                         <i className="fab fa-app-store-ios" />
+                                        <span className='mx-3'>App Store</span>
                                     </a>
                                 </div>
                                 <div className="ch_play">
                                     <a href="#">
                                         <i className="fab fa-google-play" />
+                                        <span className='mx-3'>CH Play</span>
                                     </a>
                                 </div>
                             </div>
