@@ -18,8 +18,14 @@ export default function UserManage() {
     });
 
     const deleteUser = async (taiKhoan) => {
-        await deleteUserApi(taiKhoan);
-        notification.success({ message: 'Successfuly' });
+        try {
+            const result = await deleteUserApi(taiKhoan);
+            notification.success({ message: `${result.data.message}` });
+        } catch (error) {
+            notification.error({
+                description: `${error.response.data.content}`
+            });
+        }
     };
 
     const { state: searchUser } = useAsync({
@@ -86,7 +92,10 @@ export default function UserManage() {
                     >
                         <EditFilled />
                     </button>
-                    <button onClick={() => deleteUser(record.taiKhoan)} className="btn btn-danger">
+                    <button
+                        onClick={() => deleteUser(record.taiKhoan)}
+                        className="btn btn-danger"
+                    >
                         <DeleteFilled />
                     </button>
                 </Space>
