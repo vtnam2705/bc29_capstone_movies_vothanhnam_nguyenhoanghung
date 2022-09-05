@@ -105,7 +105,7 @@ export default function UserManage() {
     return (
         <>
             <div className="py-5">
-                <Search placeholder="Search by username" onChange={onChange} enterButton />
+                <Search placeholder="Search by fullname" onChange={onChange} enterButton />
             </div>
 
             <div className="text-right mb-3">
