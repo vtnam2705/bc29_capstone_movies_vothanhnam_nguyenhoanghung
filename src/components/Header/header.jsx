@@ -18,39 +18,6 @@ export default function Header() {
         navigate('/');
     }
 
-    // const renderTableBody = () => {
-    //     if (cartList) {
-    //         return cartList.map((ele) => {
-    //             if (ele !== "")
-    //                 return (
-    //                     <tr key={ele.maLichChieu}>
-    //                         <td>{ele.tenPhim}</td>
-    //                         <td>
-    //                             {ele.tenGhe.map((ele, idx) => {
-    //                                 return (
-    //                                     <button key={idx} className="badge badge-warning m-1">
-    //                                         {ele}
-    //                                     </button>
-    //                                 );
-    //                             })}
-    //                         </td>
-    //                         <td>{ele.gioChieu}</td>
-    //                         <td>{ele.ngayChieu}</td>
-    //                         <td>
-    //                             {ele.danhSachVe &&
-    //                                 ele.danhSachVe
-    //                                     .reduce((previousValue, currentValue) => {
-    //                                         previousValue += currentValue.giaVe;
-    //                                         return previousValue;
-    //                                     }, 0)
-    //                                     .toLocaleString()}
-    //                         </td>
-    //                     </tr>
-    //                 );
-    //         });
-    //     }
-    // };
-
     return (
         <>
             <nav className="navbar navbar-expand-sm navbar-dark">
@@ -76,13 +43,13 @@ export default function Header() {
                                 </>
                             ) : (
                                 <>
-                                    <NavLink to={'/UpdateInfo'} className='text-decoration-none text-success'>
+                                    <span className='text-decoration-none text-dark font-weight-normal'>
                                         {userState.userInfo.maLoaiNguoiDung !== MaLoaiNguoiDung.QuanTri ? (
                                             `Welcome user ${userState.userInfo.hoTen}!!!!`
                                         ) : (
                                             `Welcome Admin ${userState.userInfo.hoTen}!!!!`
                                         )}
-                                    </NavLink>
+                                    </span>
                                     <button
                                         onClick={handleLogout}
                                         className='btn btn-info ml-3'
