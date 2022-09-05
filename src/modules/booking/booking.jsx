@@ -57,7 +57,7 @@ export default function Booking() {
     return roomList ? (
         <div id="movies_booking">
             <div className="w-75 mx-auto py-5">
-                <div className="booking_content row">
+                <div className="booking_content d-flex flex-wrap flex-sm-wrap flex-md-wrap flex-lg-wrap flex-xl-wrap">
                     <div className="border_chair col-sm-12 col-md-12 col-lg-9 col-xl-9">
                         <div className="screen_content p-2 mt-2 bg-dark"></div>
                         <div className='trapezoid'>

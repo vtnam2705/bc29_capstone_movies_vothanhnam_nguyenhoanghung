@@ -1,6 +1,5 @@
 import React, { lazy } from 'react'
 import { useRoutes } from 'react-router-dom'
-import CartDetail from '../modules/cart/cart';
 import Register from '../modules/register/register';
 import Schedule from '../modules/Schedule/schedule';
 import CreateUserPage from '../pages/create-user/create-user';

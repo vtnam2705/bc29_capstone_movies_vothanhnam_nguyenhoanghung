@@ -182,13 +182,6 @@ export default function MovieList() {
                     placeholder="Which movie do you like to watch?...."
                     onChange={handleChange}
                   />
-                  {/* <button
-                    className="btn btn-success col-3"
-                    type="button"
-                  // onClick={handleSubmit}
-                  >
-                    Search
-                  </button> */}
                 </form>
               </a>
             </div>
@@ -197,11 +190,6 @@ export default function MovieList() {
       </div>
       <div className="movies tab-content pt-4">
         <div id="phimHot" className="container tab-pane active">
-          {/* {handleFilterChange.map((ele) => {
-            return (
-              <div key={ele.maPhim} className="row">{renderHotMovies()}</div>
-            )
-          })} */}
           <div className="row">{renderHotMovies()}</div>
         </div>
         <div id="phimDangChieu" className="container tab-pane fade">

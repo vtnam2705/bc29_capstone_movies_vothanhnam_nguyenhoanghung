@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchMovieShowTimeApi } from "../../services/theater";
-
+import './show-time.scss';
 // import moment from "moment";
 import { formatDate } from "../../utils/common";
 
@@ -35,7 +35,7 @@ export default function ShowTime() {
               <div className="showtime_content">
                 {ele.cumRapChieu.map((ele) => {
                   return (
-                    <div className="content mb-3 row" key={ele.maCumRap}>
+                    <div className="content mb-3 d-flex flex-column align-items-start" key={ele.maCumRap}>
                       <div className="RapPhim">
                         <div className="RapPhim_title row">
                           <img className="m-2" src={ele.hinhAnh} />
@@ -43,12 +43,13 @@ export default function ShowTime() {
                         </div>
                         <h6 className="diaChi">{ele.diaChi}</h6>
                       </div>
-                      <div className="GioChieu row">
+                      <div className="GioChieu d-flex flex-wrap flex-sm-wrap flex-md-wrap flex-lg-wrap flex-xl-wrap justify-content-start">
                         {ele.lichChieuPhim.map((ele) => {
                           return (
                             <Link
                               to={`/booking/${ele.maLichChieu}`}
                               key={ele.maLichChieu}
+                              className='LichChieu'
                             >
                               <div className="GioChieu_content">
                                 <div className="time">
