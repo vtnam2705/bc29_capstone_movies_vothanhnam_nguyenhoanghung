@@ -177,3 +177,14 @@ code {
   color: #858383;
   font-size: 20px;
 }
+
+.footer_social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer_social>a>i:hover {
+  color: blue;
+}
